@@ -12,6 +12,7 @@ export PATH=/home/xithrius/.local/bin:$PATH
 export PIPENV_IGNORE_VIRTUALENVS=1
 export ZSH="/home/xithrius/.oh-my-zsh"
 export TERM=xterm-256color
+export GPG_TTY=$(tty)
 
 autoload -U compinit && compinit
 
