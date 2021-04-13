@@ -57,7 +57,6 @@ alias lenof="wc --chars"
 # git:
 alias squash="git rebase -i origin/main"
 alias switch_main="git branch -m master main && git fetch origin && git branch -u origin/main main && git restore ."
-alias change="custom_git_diff"
 
 # Web requests:
 alias weather="curl wttr.in"
@@ -84,9 +83,19 @@ alias total_commands="history | awk '{print $1}' | sort  | uniq --count | sort -
 # |  Functions  |
 # +-------------+
 
-custom_git_diff() {
-    (echo "\`\`\`diff\n"; git --no-pager diff | head --lines=-2; echo "\n\`\`\`") | xclip -selection clipboard
+
+# change() {
+#    (echo '```diff'; git --no-pager diff; echo '```') | xclip -selection clipboard
+#}
+
+change() {
+    {
+        echo '```diff'
+        git --no-pager diff
+        echo '```'
+    } | xclip -selection clipboard
 }
+
 
 # Customizing the zsh-command-time plugin:
 zsh_command_time() {
