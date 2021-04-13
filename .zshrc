@@ -9,10 +9,14 @@
 # Paths:
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=/home/xithrius/.local/bin:$PATH
+export PATH="$HOME/.emacs.d/bin:$PATH"
+
+# Other environment variables:
 export PIPENV_IGNORE_VIRTUALENVS=1
 export ZSH="/home/xithrius/.oh-my-zsh"
 export TERM=xterm-256color
 export GPG_TTY=$(tty)
+export JUPYTERLAB_DIR=$HOME/.local/share/jupyter/lab
 
 autoload -U compinit && compinit
 
@@ -47,13 +51,15 @@ alias vim="nvim"
 alias szsh="source ~/.zshrc"
 alias py="python3"
 alias gn="shutdown"
+alias rip="rg"
+alias lenof="wc --chars"
 
 # git:
 alias squash="git rebase -i origin/main"
 alias switch_main="git branch -m master main && git fetch origin && git branch -u origin/main main && git restore ."
+alias change="custom_git_diff"
 
 # Web requests:
-alias rickroll="curl -L http://bit.ly/10hA8iC | bash"
 alias weather="curl wttr.in"
 alias moon="curl wttr.in/moon"
 alias califire="curl -s http://iscaliforniaonfire.com/ | html2text - | tail -n4 | head -1 | cut -f2 -d' '"
@@ -62,10 +68,13 @@ alias ytdl_vid="python -m youtube-dl -o '~/Videos/YouTube/%(title)s' --yes-playl
 
 # Python inline scripts:
 alias xkcd="python -c \"__import__('webbrowser').open('https://c.xkcd.com/random/comic')\""
-alias lenof="python -c \"print(len(' '.join(__import__('sys').argv[1:])))\""
 
 # Fun stuff:
 alias fetch="neofetch | lolcat"
+
+# Doom Emacs:
+alias install_doom_emacs="sudo pacman -S git emacs ripgrep fd && git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d ~/.emacs.d/bin/doom install"
+alias doom_reset_init="curl -L https://raw.githubusercontent.com/hlissner/doom-emacs/develop/init.example.el > ~/.doom.d/init.el"
 
 # Scripting:
 alias total_commands="history | awk '{print $1}' | sort  | uniq --count | sort --numeric-sort --reverse | head -10" 
@@ -75,6 +84,9 @@ alias total_commands="history | awk '{print $1}' | sort  | uniq --count | sort -
 # |  Functions  |
 # +-------------+
 
+custom_git_diff() {
+    (echo "\`\`\`diff\n"; git --no-pager diff | head --lines=-2; echo "\n\`\`\`") | xclip -selection clipboard
+}
 
 # Customizing the zsh-command-time plugin:
 zsh_command_time() {
