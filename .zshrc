@@ -84,10 +84,6 @@ alias total_commands="history | awk '{print $1}' | sort  | uniq --count | sort -
 # +-------------+
 
 
-# change() {
-#    (echo '```diff'; git --no-pager diff; echo '```') | xclip -selection clipboard
-#}
-
 change() {
     {
         echo '```diff'
