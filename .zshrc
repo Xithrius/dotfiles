@@ -12,7 +12,6 @@ export PATH=/home/xithrius/.local/bin:$PATH
 export PATH="$HOME/.emacs.d/bin:$PATH"
 
 # Other environment variables:
-export PIPENV_IGNORE_VIRTUALENVS=1
 export ZSH="/home/xithrius/.oh-my-zsh"
 export TERM=xterm-256color
 export GPG_TTY=$(tty)
@@ -20,8 +19,7 @@ export JUPYTERLAB_DIR=$HOME/.local/share/jupyter/lab
 
 autoload -U compinit && compinit
 
-# Setting the theme:
-ZSH_THEME="zeta"
+ZSH_THEME="tiny-lambda"
 
 plugins=(
 	git
@@ -47,12 +45,11 @@ source $ZSH/oh-my-zsh.sh
 
 
 # Short and neat:
-alias vim="nvim"
 alias szsh="source ~/.zshrc"
 alias py="python3"
 alias gn="shutdown"
 alias rip="rg"
-alias lenof="wc --chars"
+alias chars="wc --chars"
 
 # git:
 alias squash="git rebase -i origin/main"
@@ -71,25 +68,25 @@ alias xkcd="python -c \"__import__('webbrowser').open('https://c.xkcd.com/random
 # Fun stuff:
 alias fetch="neofetch | lolcat"
 
-# Doom Emacs:
-alias install_doom_emacs="sudo pacman -S git emacs ripgrep fd && git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d ~/.emacs.d/bin/doom install"
-alias doom_reset_init="curl -L https://raw.githubusercontent.com/hlissner/doom-emacs/develop/init.example.el > ~/.doom.d/init.el"
-
-# Scripting:
-alias total_commands="history | awk '{print $1}' | sort  | uniq --count | sort --numeric-sort --reverse | head -10" 
-
 
 # +-------------+
 # |  Functions  |
 # +-------------+
 
 
+# Copying the changes in a repository to a code block for Discord.
 change() {
     {
         echo '```diff'
         git --no-pager diff
         echo '```'
     } | xclip -selection clipboard
+}
+
+
+# Getting the integer for amount of commands ran.
+total_command_amount() {
+    history | tail -1 | awk '{ print $1 }'
 }
 
 
