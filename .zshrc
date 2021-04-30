@@ -9,17 +9,15 @@
 # Paths:
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=/home/xithrius/.local/bin:$PATH
-export PATH="$HOME/.emacs.d/bin:$PATH"
 
 # Other environment variables:
 export ZSH="/home/xithrius/.oh-my-zsh"
 export TERM=xterm-256color
 export GPG_TTY=$(tty)
-export JUPYTERLAB_DIR=$HOME/.local/share/jupyter/lab
 
 autoload -U compinit && compinit
 
-ZSH_THEME="tiny-lambda"
+ZSH_THEME="lambda"
 
 plugins=(
 	git
@@ -54,6 +52,7 @@ alias chars="wc --chars"
 # git:
 alias squash="git rebase -i origin/main"
 alias switch_main="git branch -m master main && git fetch origin && git branch -u origin/main main && git restore ."
+alias remove_local_branches="git checkout main && git --no-pager branch | grep -v '^*' | xargs git branch -d"
 
 # Web requests:
 alias weather="curl wttr.in"
