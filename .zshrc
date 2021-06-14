@@ -3,6 +3,16 @@
 # +--------------+
 
 
+# Anchoring the prompt to the bottom of the terminal
+printf '\n%.0s' {1..100}
+
+# tmux will always start.
+if which tmux 2>&1 >/dev/null; then
+  if [ $TERM != "screen-256color" ] && [  $TERM != "screen" ]; then
+    tmux attach -t "tmux" || tmux new -s "tmux"; exit
+  fi
+fi
+
 # Loading up z - https://github.com/rupa/z
 . /usr/share/z/z.sh
 
@@ -10,9 +20,9 @@
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=/home/xithrius/.local/bin:$PATH
 
-# Other environment variables:
+# Environment variables:
 export ZSH="/home/xithrius/.oh-my-zsh"
-export TERM=xterm-256color
+export EDITOR="nvim"
 export GPG_TTY=$(tty)
 
 autoload -U compinit && compinit
@@ -25,7 +35,7 @@ plugins=(
 	gitfast
 	history-substring-search
 	colorize
-	autopep8
+        tmux
 
 	# https://github.com/zsh-users/zsh-syntax-highlighting
 	zsh-syntax-highlighting
@@ -47,25 +57,33 @@ alias szsh="source ~/.zshrc"
 alias py="python3"
 alias gn="shutdown"
 alias rip="rg"
-alias chars="wc --chars"
+alias chars="wc -m"
+alias lines="wc -l"
+alias btop="bashtop"
+alias rm="rm -i"
+alias obliterate="shred"
+alias chmox="chmod +x"
+alias vim="nvim"
+alias info="neofetch"
 
-# git:
+# Configuring:
+alias nvimconfig="vim ~/.config/nvim/"
+alias i3config="vim ~/.config/i3/config"
+
+# Git:
 alias squash="git rebase -i origin/main"
 alias switch_main="git branch -m master main && git fetch origin && git branch -u origin/main main && git restore ."
-alias remove_local_branches="git checkout main && git --no-pager branch | grep -v '^*' | xargs git branch -d"
+alias remove_local="git checkout main && git --no-pager branch | grep -v '^*' | xargs git branch -d"
 
 # Web requests:
 alias weather="curl wttr.in"
 alias moon="curl wttr.in/moon"
 alias califire="curl -s http://iscaliforniaonfire.com/ | html2text - | tail -n4 | head -1 | cut -f2 -d' '"
-alias ytdl="python -m youtube-dl -o '~/Music/%(title)s.mp3' -f 'bestaudio/best' --yes-playlist"
-alias ytdl_vid="python -m youtube-dl -o '~/Videos/YouTube/%(title)s' --yes-playlist"
+alias ytdl="youtube-dl -o '~/Music/%(title)s.mp3' -f 'bestaudio/best' --yes-playlist"
+alias ytdl_vid="youtube-dl -o './%(title)s' --yes-playlist"
 
 # Python inline scripts:
 alias xkcd="python -c \"__import__('webbrowser').open('https://c.xkcd.com/random/comic')\""
-
-# Fun stuff:
-alias fetch="neofetch | lolcat"
 
 
 # +-------------+
