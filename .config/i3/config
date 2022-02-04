@@ -60,8 +60,19 @@ bindsym $mod+Return exec --no-startup-id kitty
 
 # +------------+
 # |  Browsing  |
-# +-------------+
+# +------------+
 bindsym $mod+b exec --no-startup-id brave
+
+
+# +-----------+
+# |  Spotify  |
+# +-----------+
+
+exec_always --no-startup-id playerctld daemon
+
+bindsym $mod+F12 exec playerctl --player=spotify next
+bindsym $mod+F11 exec playerctl --player=spotify play-pause
+bindsym $mod+F10 exec playerctl --player=spotify previous 
 
 
 # +----------------------+
@@ -99,7 +110,7 @@ exec_always --no-startup-id picom
 # |  Screen locking  |
 # +------------------+
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
-bindsym $mod+shift+x exec --no-startup-id i3lock
+bindsym $mod+Shift+x exec --no-startup-id i3lock
 
 
 # +-----------+
