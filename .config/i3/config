@@ -23,45 +23,58 @@ exec_always --no-startup-id xmodmap ~/.Xmodmap
 # |  i3-gaps  |
 # +-----------+
 for_window [class="^.*"] border pixel 2
-gaps inner 6 
-smart_gaps on
-smart_borders on
-smart_borders no_gaps
+# gaps inner 6 
+# smart_gaps on
+# smart_borders on
+# smart_borders no_gaps
 hide_edge_borders smart_no_gaps
+
+
+# +---------+
+# |  Fonts  |
+# +---------+
+exec_always --no-startup-id fc-cache -fv
+
+
+# +---------+
+# |  conky  |
+# +---------+
+# exec_always --no-startup-id conky
 
 
 # +-----------+
 # |  Desktop  |
 # +-----------+
 # Starting custom polybar status bar.
-exec_always --no-startup-id ~/.config/polybar/cuts/launch.sh
+exec_always --no-startup-id ~/.config/polybar/launch.sh --cuts
 
 # Setting the background.
-exec_always --no-startup-id feh --bg-scale ~/.config/i3/backgrounds/xithrius_background.png
+exec_always --no-startup-id feh --bg-scale ~/Pictures/backgrounds/ultrakill_v1_upscaled.png
 
 
-# +-------------------+
-# |  Start Alacritty  |
-# +-------------------+
-# Start a terminal:
-bindsym $mod+Return exec --no-startup-id WINIT_HIDPI_FACTOR=1.0 alacritty
+# +---------------+
+# |  Start Kitty  |
+# +---------------+
+bindsym $mod+Return exec --no-startup-id kitty
 
 
-# +--------+
-# |  Rofi  |
-# +--------+
-# bindsym $mod+d exec --no-startup-id rofi -show run -monitor 1 -lines 5 -show-icons -opacity "80" -bw 0 -bc "$base01" -bg "$base02" -fg "$base07" - hlbg "$base05" -hlfg "#282828"
-bindsym $mod+d exec rofi -show run -monitor 1 -lines 7 -opacity "50" 
+# +------------+
+# |  Browsing  |
+# +-------------+
+bindsym $mod+b exec --no-startup-id brave
 
 
-# +--------------------+
-# |  Maim screenshots  |
-# +--------------------+
-# Screenshot a rectangular section
-bindsym $mod+p exec --no-startup-id maim -s | convert - \( +clone -background black -shadow 80x3+5+5 \) +swap -background none -layers merge +repage /tmp/maim-screenshot.png && cat /tmp/maim-screenshot.png | xclip -selection clipboard -t image/png
+# +----------------------+
+# |  Application runner  |
+# +----------------------+
+# bindsym $mod+d exec --no-startup-id ~/.config/rofi/launchers/text/launcher.sh
+bindsym $mod+d exec --no-startup-id dmenu_run
 
-# Screenshot of a monitor
-bindsym $mod+shift+p exec --no-startup-id maim -s | xclip -selection clipboard -t image/png
+
+# +-------------------------+
+# |  Flameshot screenshots  |
+# +-------------------------+
+bindsym $mod+p exec --no-startup-id flameshot gui
 
 
 # +---------+
@@ -86,13 +99,19 @@ exec_always --no-startup-id picom
 # |  Screen locking  |
 # +------------------+
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
-bindsym $mod+shift+x exec i3lock
+bindsym $mod+shift+x exec --no-startup-id i3lock
 
 
 # +-----------+
 # |  Network  |
 # +-----------+
 exec --no-startup-id nm-applet
+
+
+# +-----------+
+# |  KWallet  |
+# +-----------+
+exec --no-startup-id /usr/lib/pam_kwallet_init
 
 
 # +---------+
@@ -112,13 +131,21 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 # Use Mouse+$mod to drag floating windows to their wanted position:
 floating_modifier $mod
 
+# Popup windows, but floating.
+for_window [window_role="pop-up"] floating enable
+
+for_window [window_role="bubble"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [window_role="Preferences"] floating enable
+for_window [window_type="dialog"] floating enable
+for_window [window_type="menu"] floating enable
+
 
 # +------------------+
 # |  Window killing  |
 # +------------------+
 # Kill focused window:
 bindsym $mod+Shift+q kill
-
 
 
 # +-------------------+
@@ -260,9 +287,6 @@ bindsym $mod+r mode "resize"
 # +------------+
 # |  Monitors  |
 # +------------+
-# Configuration of monitors.
-exec_always --no-startup-id xrandr --output DVI-D-0 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI-0 --mode 1920x1080 --pos 3840x0 --rotate normal --output DP-0 --off --output DP-1 --off --output HDMI-1 --mode 1920x1080 --pos 1920x0 --rotate normal
-
 # Forcing full composition pipeline to remove any possibilities of screentearing.
 exec_always --no-startup-id ~/.config/i3/scripts/force-full-composition-pipeline.sh
 
