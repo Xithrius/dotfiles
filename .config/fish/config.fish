@@ -42,13 +42,14 @@ alias ytdl_vid="youtube-dl -o './%(title)s' --yes-playlist"
 # +-------+
 
 abbr -ag g git
-alias gst='git status'
-alias gl='git log --color --graph --pretty=format:'\''%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'' --abbrev-commit'
-alias ga='git add'
-alias gc='git commit -v'
-alias gd='git diff'
-alias gp='git push'
-alias gu='git pull'
+alias gst="git status"
+alias ga="git add"
+alias gc="git commit -v"
+alias gd="git diff"
+alias gp="git push"
+alias gu="git pull"
+alias gl="git log --color --graph --pretty=format:'\''%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'' --abbrev-commit"
+alias gmm="git branch -m master main && git fetch origin && git branch -u origin/main main && git remote set-head origin -a"
 
 
 # +----------+
