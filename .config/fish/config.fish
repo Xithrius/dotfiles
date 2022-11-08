@@ -33,7 +33,6 @@ alias settime="timedatectl set-ntp true"
 alias zip="7z a -tzip"
 alias flac="yt-dlp -o '%(title)s.flac' -x --audio-format flac"
 alias ytdl="yt-dlp -o '%(title)s.%(ext)s' --yes-playlist"
-alias ytdl="yt-dlp -o '%(title)s.%(ext)s' --yes-playlist"
 
 # +-------+
 # |  Git  |
