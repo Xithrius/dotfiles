@@ -75,6 +75,8 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
+
 (setq lsp-rust-analyzer-inlay-hints-mode t)
 (setq lsp-rust-analyzer-server-display-inlay-hints t)
 
