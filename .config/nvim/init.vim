@@ -2,7 +2,6 @@ set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath
 
 " https://github.com/junegunn/vim-plug
-" Plugin Installation through Vim-Plug
 call plug#begin('~/.vim/plugged')
 
 " https://github.com/farmergreg/vim-lastplace
@@ -68,23 +67,23 @@ Plug 'mfussenegger/nvim-dap'
 
 call plug#end()
 
-"   - Plugin Configuration -
-"       deoplete
-"           Use deoplete at startup.
+" - Plugin Configuration -
+" deoplete
+" Use deoplete at startup.
 let g:deoplete#enable_at_startup = 1
 
-"           Show a maximum of 10 autocompletion suggestions.
+" Show a maximum of 10 autocompletion suggestions.
 let g:deoplete#max_list = 10
 
-"       SuperTab
-"           Navigate the completion menu from top to bottom.
+" SuperTab
+" Navigate the completion menu from top to bottom.
 let g:SuperTabDefaultCompletionType = "<c-n>"
 
-"       vim-markdown
-"           Disable folding.
+" vim-markdown
+" Disable folding.
 let g:vim_markdown_folding_disabled = 1
 
-"           Use TeX syntax extension.
+" Use TeX syntax extension.
 let g:vim_markdown_math = 1
 
 " Use Powerline Fonts
@@ -96,13 +95,13 @@ let g:airline#extensions#tabline#enabled = 1
 " Enable Bufferline integration
 let g:airline#extensions#bufferline#enabled = 1
 
-"       NERDTree
-"           Ignore pycache files and folder.
+" NERDTree
+" Ignore pycache files and folder.
 let NERDTreeIgnore = ['\.pyc$', '__pycache__$']
 
 "   - Vim Color Configuration -
-"       From:          https://www.reddit.com/r/unixporn/comments/5vke7s/osx_iterm2_tmux_vim/
-"       Screenshots:   http://imgur.com/a/6OIdz
+" From:    https://www.reddit.com/r/unixporn/comments/5vke7s/osx_iterm2_tmux_vim/
+" Screenshots:   http://imgur.com/a/6OIdz
 hi LineNr ctermfg=237
 hi StatusLine ctermfg=235 ctermbg=245
 hi StatusLineNC ctermfg=235 ctermbg=237
@@ -116,17 +115,17 @@ hi GitGutterDelete ctermbg=235 ctermfg=245
 hi GitGutterChangeDelete ctermbg=235 ctermfg=245
 hi EndOfBuffer ctermfg=237 ctermbg=235
 
-"       Colorscheme Configuration
+" Colorscheme Configuration
 " let g:gruvbox_italics = 1
 set background=dark
-colorscheme onedarkpro 
+colorscheme onedarkpro
 let g:airline_theme='base16_google_dark'
 
 let mapleader="\<Space>"
 let maplocalleader="\\"
 nnoremap <Space> <nop>
 
-"   - Keymaps -
+" - Keymaps -
 " Toggle NERD Tree with CTRL-N
 map <C-n> :NERDTreeToggle<CR>
 " Toggle Git Status with CTRL-G
@@ -141,41 +140,41 @@ nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
 nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 
-"   - Vim Editing Configuration -
-"       Copy indent from the current line on inserting an newline
+" - Vim Editing Configuration -
+" Copy indent from the current line on inserting an newline
 set autoindent
 
-"       Make Tab insert spaces
+" Make Tab insert spaces
 set expandtab
 
-"       Insert 4 spaces for a Tab
+" Insert 4 spaces for a Tab
 set tabstop=4
 
-"       Use 4 space characters for indentation
+" Use 4 space characters for indentation
 set shiftwidth=4
 
-"       Overrides 'ignorecase' if the pattern contains uppercase characters.
+" Overrides 'ignorecase' if the pattern contains uppercase characters.
 set smartcase
 
-"       Show the line numbers
+" Show the line numbers
 set number
 
-"       Do not show the default mode text (e.g. -- INSERT --)
+" Do not show the default mode text (e.g. -- INSERT --)
 set noshowmode
 
-"       Don't preview documentation for completion
+" Don't preview documentation for completion
 set completeopt-=preview
 
-"       Find search matches incrementally
+" Find search matches incrementally
 set incsearch
 
-"       Do not change the cursor to '|' in insert mode.
+" Do not change the cursor to '|' in insert mode.
 set guicursor=
 
-"       Use syntax concealing.
+" Use syntax concealing.
 set conceallevel=2
 
-"     Exit Terminal Mode with CTRL-k
+" Exit Terminal Mode with CTRL-k
 tnoremap <C-k> <C-\><C-n>
 
 " Persistent undo history
