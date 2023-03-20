@@ -111,6 +111,11 @@ require('lazy').setup({
 
   -- Fuzzy Finder (files, lsp, etc)
   { 'nvim-telescope/telescope.nvim', version = '*', dependencies = { 'nvim-lua/plenary.nvim' } },
+  'nvim-telescope/telescope-project.nvim',
+  {
+    "nvim-telescope/telescope-file-browser.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
+  },
 
   -- Fuzzy Finder Algorithm which requires local dependencies to be built.
   -- Only load if `make` is available. Make sure you have the system
@@ -181,7 +186,6 @@ vim.o.smartcase = true
 
 -- Keep signcolumn on by default
 vim.wo.signcolumn = 'yes'
-
 -- Decrease update time
 vim.o.updatetime = 250
 vim.o.timeout = true
@@ -246,6 +250,25 @@ vim.keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags, { desc
 vim.keymap.set('n', '<leader>fw', require('telescope.builtin').grep_string, { desc = '[F]ind current [W]ord' })
 vim.keymap.set('n', '<leader>fg', require('telescope.builtin').live_grep, { desc = '[F]ind by [G]rep' })
 vim.keymap.set('n', '<leader>fd', require('telescope.builtin').diagnostics, { desc = '[F]ind [D]iagnostics' })
+
+local crates = require('crates')
+local opts = { noremap = true, silent = true }
+
+vim.keymap.set('n', '<leader>cr', crates.reload, opts)
+
+vim.keymap.set('n', '<leader>cv', crates.show_versions_popup, opts)
+vim.keymap.set('n', '<leader>cf', crates.show_features_popup, opts)
+vim.keymap.set('n', '<leader>cd', crates.show_dependencies_popup, opts)
+
+vim.keymap.set('n', '<leader>cu', crates.update_crate, opts)
+vim.keymap.set('n', '<leader>ca', crates.update_all_crates, opts)
+vim.keymap.set('n', '<leader>cU', crates.upgrade_crate, opts)
+vim.keymap.set('n', '<leader>cA', crates.upgrade_all_crates, opts)
+
+vim.keymap.set('n', '<leader>cH', crates.open_homepage, opts)
+vim.keymap.set('n', '<leader>cR', crates.open_repository, opts)
+vim.keymap.set('n', '<leader>cD', crates.open_documentation, opts)
+vim.keymap.set('n', '<leader>cC', crates.open_crates_io, opts)
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
@@ -370,7 +393,11 @@ end
 --  Add any additional override configuration in the following tables. They will be passed to
 --  the `settings` field of the server config. You must look up that documentation yourself.
 local servers = {
-  rust_analyzer = {},
+  rust_analyzer = {
+    checkOnSave = {
+      command = "clippy",
+    },
+  },
   tsserver = {},
   -- gopls = {},
   -- clangd = {},
