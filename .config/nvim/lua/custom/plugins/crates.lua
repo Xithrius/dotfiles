@@ -3,7 +3,6 @@ return {
     tag = 'v0.3.0',
     requires = { 'nvim-lua/plenary.nvim' },
     config = function()
-        require('crates').setup()
-
+        require('crates').setup {}
     end,
 }
