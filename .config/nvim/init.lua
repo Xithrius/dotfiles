@@ -52,7 +52,7 @@ require('lazy').setup({
     },
   },
 
-  'simrat39/rust-tools.nvim',
+  { 'simrat39/rust-tools.nvim', opts = { tools = { on_initialized = true } } },
 
   {
     'kosayoda/nvim-lightbulb',
@@ -66,7 +66,7 @@ require('lazy').setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim',          opts = {} },
+  { 'folke/which-key.nvim',     opts = {} },
   {
     -- Adds git releated signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -263,7 +263,8 @@ vim.keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags, { desc
 vim.keymap.set('n', '<leader>fw', require('telescope.builtin').grep_string, { desc = '[F]ind current [W]ord' })
 vim.keymap.set('n', '<leader>fg', require('telescope.builtin').live_grep, { desc = '[F]ind by [G]rep' })
 vim.keymap.set('n', '<leader>fd', require('telescope.builtin').diagnostics, { desc = '[F]ind [D]iagnostics' })
-vim.keymap.set("n", "<leader>fc", [[<cmd>lua vim.lsp.buf.code_action()<cr>]], {})
+
+vim.keymap.set("n", "<leader>ga", [[<cmd>lua vim.lsp.buf.code_action()<cr>]], { desc = '[G]et [A]ctions' })
 
 vim.api.nvim_set_keymap("n", "<leader>ss", [[<cmd>lua require("persistence").load()<cr>]], {})
 vim.api.nvim_set_keymap("n", "<leader>sl", [[<cmd>lua require("persistence").load({ last = true })<cr>]], {})
@@ -453,6 +454,9 @@ mason_lspconfig.setup_handlers {
       settings = servers[server_name],
     }
   end,
+  ["rust_analyzer"] = function()
+    require('rust-tools').setup {}
+  end
 }
 
 -- nvim-cmp setup
