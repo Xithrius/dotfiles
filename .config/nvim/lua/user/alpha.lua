@@ -44,16 +44,13 @@ dashboard.section.buttons.val = {
 	dashboard.button("SPC f f", "  Find file", ":Telescope find_files <CR>"),
 	dashboard.button("SPC f g", "  Find text", ":Telescope live_grep <CR>"),
 	dashboard.button("p", "  Find project", ":Telescope projects <CR>"),
-	dashboard.button("r", "  Recently used files", ":Telescope oldfiles <CR>"),
+	dashboard.button("r", "  Recent files", ":Telescope oldfiles <CR>"),
 	dashboard.button("u", "  Update plugins", "<cmd>PackerSync<CR>"),
 	dashboard.button("c", "  Configuration", "<cmd>cd ~/.config/nvim/ <CR>"),
 	dashboard.button("q", "  Quit Neovim", ":qa<CR>"),
 }
 
--- }
-
 dashboard.section.footer.opts.hl = "Type"
-dashboard.section.header.opts.hl = "Include"
 dashboard.section.buttons.opts.hl = "Keyword"
 
 dashboard.opts.opts.noautocmd = true

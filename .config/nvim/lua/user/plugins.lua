@@ -38,19 +38,22 @@ packer.init({
 
 return packer.startup(function(use)
 	use({ "wbthomason/packer.nvim" })
+
 	use({ "nvim-lua/plenary.nvim" })
 	use({ "windwp/nvim-autopairs" })
 	use({ "numToStr/Comment.nvim" })
 	use({ "kyazdani42/nvim-web-devicons" })
-	use({ "kyazdani42/nvim-tree.lua" })
 	use({ "moll/vim-bbye" })
 	use({ "nvim-lualine/lualine.nvim" })
-	use({ "akinsho/toggleterm.nvim" })
 	use({ "ahmedkhalf/project.nvim" })
 	use({ "lewis6991/impatient.nvim" })
 	use({ "lukas-reineke/indent-blankline.nvim" })
 	use({ "goolord/alpha-nvim" })
 	use({ "folke/which-key.nvim" })
+	use({ "karb94/neoscroll.nvim" })
+	use({ "ggandor/leap.nvim" })
+	use({ "nvim-neo-tree/neo-tree.nvim" })
+	use({ "MunifTanjim/nui.nvim" })
 
 	-- Colorscheme
 	use({ "olimorris/onedarkpro.nvim" })
@@ -83,6 +86,7 @@ return packer.startup(function(use)
 
 	-- Telescope
 	use({ "nvim-telescope/telescope.nvim" })
+	use({ "nvim-telescope/telescope-ui-select.nvim" })
 
 	-- Treesitter
 	use({ "nvim-treesitter/nvim-treesitter" })
