@@ -2,12 +2,14 @@ if status is-interactive && not set -q TMUX
     exec tmux
 end
 
-set -gx PATH $HOME/.local/bin $HOME/.cargo/bin $HOME/.donet/tools /usr/lib/ssh $HOME/.yarn/bin $PATH
 setenv SSH_AUTH_SOCK $XDG_RUNTIME_DIR/ssh-agent.socket
 setenv GPG_TTY (tty)
 setenv SSH_ASKPASS ssh-askpass
+setenv EDITOR nvim 
+setenv DEBUGINFOD_URLS "https://debuginfod.archlinux.org"
+setenv QT_QPA_PLATFORMTHEME qt5ct
 setenv TERM xterm-256color
-setenv EDITOR code
+set -gx PATH $HOME/.local/bin $HOME/.cargo/bin /usr/lib/ssh $HOME/.yarn/bin $PATH
 
 
 # +---------+
@@ -18,7 +20,8 @@ alias chmox="chmod +x"
 alias gn="shutdown"
 alias rm="rm -i"
 alias py="python3"
-alias vim="nvim"
+alias v="nvim"
+alias b="btop"
 
 
 # +-------------+
@@ -27,12 +30,12 @@ alias vim="nvim"
 
 alias weather="curl wttr.in"
 alias moon="curl wttr.in/moon"
-alias h="history | wc -l"
 alias xkcd="xdg-open 'https://xkcd.com/'"
-alias settime="timedatectl set-ntp true"
-alias zip="7z a -tzip"
-alias flac="yt-dlp -o '%(title)s.flac' -x --audio-format flac"
+alias timedatectl="sudo timedatectl set-ntp true"
 alias ytdl="yt-dlp -o '%(title)s.%(ext)s' --yes-playlist"
+alias mp3="yt-dlp -o '%(title)s.mp3' -x --yes-playlist --audio-format mp3"
+alias aur="pacman -Qm"
+
 
 # +-------+
 # |  Git  |
@@ -40,16 +43,7 @@ alias ytdl="yt-dlp -o '%(title)s.%(ext)s' --yes-playlist"
 
 abbr -ag g git
 alias gst="git status"
-alias gs="git stash"
-alias ga="git add"
-alias gc="git commit -m"
-alias gd="git diff"
-alias gds="git diff --stat"
-alias gp="git push"
-alias gu="git pull"
-alias gl="git log"
 alias squash="git rebase -i"
-alias tomain="git branch -m master main && git fetch origin && git branch -u origin/main main && git remote set-head origin -a"
 
 
 # +----------+
@@ -59,10 +53,15 @@ alias tomain="git branch -m master main && git fetch origin && git branch -u ori
 alias orphans="pacman -Qtdq"
 alias killorphans="sudo pacman -Rnu (pacman -Qtdq)"
 alias hibernate="systemctl hibernate"
-alias windows="systemctl reboot --boot-loader-entry=auto-windows"
 alias zzz="systemctl suspend"
+alias windows="systemctl reboot --boot-loader-entry=auto-windows"
+alias bios="systemctl reboot --firmware-setup"
 alias howold="echo Install started on (head -1 /var/log/pacman.log | cut -d ' ' -f 1)"
 alias netscan='nmap -sn 192.168.1.0/24'
+alias mirrorlist='sudo reflector --latest 25 --country US --protocol https --sort rate --save /etc/pacman.d/mirrorlist'
+alias trash="cd ~/.local/share/Trash/files/"
+alias hdd="cd /mnt/hdd1/"
+alias upgraded="grep -i upgraded /var/log/pacman.log"
 
 
 # +-------------+

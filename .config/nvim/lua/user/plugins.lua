@@ -79,6 +79,12 @@ return packer.startup(function(use)
 	use({ "RRethy/vim-illuminate" })
 	use({ "j-hui/fidget.nvim" })
 	use({ "simrat39/rust-tools.nvim" })
+	use({
+		"saecki/crates.nvim",
+		config = function()
+			require("crates").setup()
+		end,
+	})
 	use({ "folke/neodev.nvim" })
 
 	-- Debugging
