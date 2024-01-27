@@ -1,4 +1,4 @@
 # Dotfiles
 
-Read more on this [post that I made](https://xithrius.cloud/blog/posts/arch-linux-customization)
+Read more on this [post that I made](https://xithrius.cloud/posts/arch-linux-customization)
 
